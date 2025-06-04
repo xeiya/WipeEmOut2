@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class DamageReceiver : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class DamageReceiver : MonoBehaviour
     [Tooltip("What to do after this damage receiver runs out of health")]
     public UnityEvent onHealthZero;
 
+    [SerializeField] private Image healthBar;
+
     private void Start()
     {
         healthCurrent = healthMax;
@@ -25,6 +28,8 @@ public class DamageReceiver : MonoBehaviour
     /// <param name="amount"></param>
     public void TakeDamage(float amount)
     {
+        healthBar.fillAmount = GetHealthPercentage();
+
         //If we're already out of health, do nothing.
         if (healthCurrent <= 0)
             return;
@@ -71,5 +76,8 @@ public class DamageReceiver : MonoBehaviour
         }
     }
 
-
+    private float GetHealthPercentage() 
+    { 
+        return healthCurrent / healthMax;
+    }
 }

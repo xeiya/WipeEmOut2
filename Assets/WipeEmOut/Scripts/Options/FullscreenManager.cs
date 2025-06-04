@@ -14,6 +14,7 @@ public class FullscreenManager : MonoBehaviour
         }
     }
 
+    //Sets the screen to full screen
     public void SetFullscreen(bool value) 
     { 
         Screen.fullScreen = value;
